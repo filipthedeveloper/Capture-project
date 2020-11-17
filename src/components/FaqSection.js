@@ -1,48 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { About } from "../styles";
+import Toggle from "./Toggle";
+import { AnimateSharedLayout } from "framer-motion";
+import { useScroll } from "./useScroll";
+import { scrollReaveal } from "../animation";
+
 const FaqSection = () => {
+  const [element, controls] = useScroll();
   return (
-    <Faq>
+    <Faq
+      variants={scrollReaveal}
+      ref={element}
+      animate={controls}
+      initial="hidden"
+    >
       <h2>
         Any Questions <span>FAQ</span>
       </h2>
-      <div className="question">
-        <h4>How do I start</h4>
-        <div className="answer">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, eum?
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>Daily Scgedule</h4>
-        <div className="answer">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, eum?
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>Different Payment Methods</h4>
-        <div className="answer">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, eum?
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
-      <div className="question">
-        <h4>What product do you offer</h4>
-        <div className="answer">
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, eum?
-          </p>
-        </div>
-        <div className="faq-line"></div>
-      </div>
+      <AnimateSharedLayout>
+        <Toggle title="How do I start?">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+              aperiam ipsum iste doloribus minus sunt tempora, laboriosam
+              excepturi ratione ab?
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="Daily Schedule">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A,
+              mollitia?
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="Different Payment Methods">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Doloremque, quam.
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="What product do you offer.">
+          <div className="answer">
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, eum?
+            </p>
+          </div>
+        </Toggle>
+      </AnimateSharedLayout>
     </Faq>
   );
 };
